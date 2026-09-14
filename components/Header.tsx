@@ -24,7 +24,7 @@ export function Header() {
       )}
     >
       <div className="container-x flex h-[72px] items-center justify-between">
-        <a href="#top" className="text-ink text-2xl" aria-label="Foods From The Edge, back to top" onClick={() => setOpen(false)}>
+        <a href="#top" className="text-xl text-ink md:text-2xl" aria-label="Foods From The Edge, back to top" onClick={() => setOpen(false)}>
           <Wordmark />
         </a>
 

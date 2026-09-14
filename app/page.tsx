@@ -1,7 +1,7 @@
+import Image from "next/image"
 import { ArrowDown, ArrowRight, Check } from "lucide-react"
 import { EnquiryForm, EnquiryLink } from "@/components/EnquiryForm"
 import { Header } from "@/components/Header"
-import { ProductArt } from "@/components/ProductArt"
 import { Reveal } from "@/components/Reveal"
 import { Wordmark } from "@/components/Wordmark"
 import {
@@ -41,7 +41,6 @@ export default function Home() {
 
 function Hero() {
   const beet = byName("Cheesy Beetroot")
-  const hommous = byName("Hommous")
   const dukkah = byName("Spicy Dukkah")
   const attitude = byName("Attitude")
 
@@ -82,33 +81,35 @@ function Hero() {
         </div>
 
         <div className="relative mx-auto aspect-square w-full max-w-[560px] lg:col-span-5">
-          <div className="absolute inset-[6%] rounded-full bg-paper-2" aria-hidden="true" />
-          <ProductArt
-            kind={beet.kind}
-            palette={beet.palette}
-            seed="hero-beet"
-            className="animate-float absolute left-[8%] top-[14%] w-[64%] drop-shadow-xl"
-          />
-          <ProductArt
-            kind={hommous.kind}
-            palette={hommous.palette}
-            seed="hero-hommous"
-            className="animate-float absolute right-0 top-0 w-[40%] [animation-delay:-2s]"
-          />
-          <ProductArt
-            kind={dukkah.kind}
-            palette={dukkah.palette}
-            seed="hero-dukkah"
-            className="animate-float absolute bottom-[2%] right-[4%] w-[42%] [animation-delay:-4s]"
-          />
-          <ProductArt
-            kind={attitude.kind}
-            palette={attitude.palette}
-            label={attitude.name}
-            seed="hero-attitude"
-            className="absolute bottom-0 left-0 w-[32%]"
-          />
-          <RoundBadge className="absolute left-[2%] top-[2%] w-[26%]" />
+          <div className="absolute right-0 top-0 h-[80%] w-[80%] overflow-hidden rounded-[2rem] bg-white shadow-xl shadow-ink/10">
+            <Image
+              src={beet.image.src}
+              alt={`${beet.name} dip in a bowl`}
+              fill
+              loading="eager"
+              sizes="(min-width: 1024px) 450px, 80vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="absolute bottom-[4%] left-0 h-[50%] w-[30%] overflow-hidden rounded-3xl bg-white shadow-xl shadow-ink/15">
+            <Image
+              src={attitude.image.src}
+              alt={`${attitude.name} dressing bottle`}
+              fill
+              sizes="(min-width: 1024px) 170px, 30vw"
+              className="object-contain p-3"
+            />
+          </div>
+          <div className="animate-float absolute bottom-0 right-[6%] aspect-square w-[36%] overflow-hidden rounded-full border-[6px] border-paper bg-white shadow-xl shadow-ink/15">
+            <Image
+              src={dukkah.image.src}
+              alt={`${dukkah.name} close up`}
+              fill
+              sizes="(min-width: 1024px) 200px, 36vw"
+              className="scale-[1.9] object-cover"
+            />
+          </div>
+          <RoundBadge className="absolute left-[4%] top-[6%] w-[24%]" />
         </div>
       </div>
     </section>
@@ -212,16 +213,18 @@ function MadeFromFood() {
             const product = byName(m.product) ?? byName("Original Dukkah")
             return (
               <Reveal as="li" key={m.product} delay={i * 0.06} className="flex flex-col bg-olive p-8">
-                <ProductArt
-                  kind={product.kind}
-                  palette={product.palette}
-                  label={product.name}
-                  seed={`made-${product.slug}`}
-                  className="w-24"
-                />
+                <div className="relative size-24 overflow-hidden rounded-full border-4 border-paper/90 bg-white">
+                  <Image
+                    src={product.image.src}
+                    alt=""
+                    fill
+                    sizes="96px"
+                    className="scale-[1.8] object-cover"
+                  />
+                </div>
                 <p className="mt-8 font-display text-3xl italic leading-tight">{m.ingredient}</p>
                 <p className="mt-3 text-sm text-paper/70">
-                  in our <span className="font-semibold text-paper">{m.product.toLowerCase() === "dukkah" ? "dukkah" : m.product}</span>
+                  in our <span className="font-semibold text-paper">{m.product === "Dukkah" ? "dukkah" : m.product}</span>
                 </p>
               </Reveal>
             )
@@ -316,20 +319,20 @@ function OurRange() {
 }
 
 function ProductCard({ product, wide }: { product: Product; wide?: boolean }) {
+  const bottle = product.image.height > product.image.width
   return (
     <article
       className={`group flex h-full overflow-hidden rounded-3xl bg-paper ${wide ? "flex-col sm:flex-row" : "flex-col"}`}
     >
-      <div
-        className={`relative grid place-items-center overflow-hidden p-8 ${wide ? "sm:w-2/5" : ""}`}
-        style={{ backgroundColor: `color-mix(in srgb, ${product.palette.base} 22%, #F4EEE3)` }}
-      >
-        <ProductArt
-          kind={product.kind}
-          palette={product.palette}
-          label={product.name}
-          seed={product.slug}
-          className="w-44 transition-transform duration-700 ease-out group-hover:rotate-12 group-hover:scale-105 md:w-52"
+      <div className={`relative aspect-[4/3] overflow-hidden bg-white ${wide ? "sm:aspect-auto sm:w-2/5" : ""}`}>
+        <Image
+          src={product.image.src}
+          alt={product.name}
+          fill
+          sizes={wide ? "(min-width: 1024px) 240px, (min-width: 640px) 40vw, 100vw" : "(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"}
+          className={`transition-transform duration-700 ease-out group-hover:scale-105 ${
+            bottle ? "object-contain py-5" : "object-cover"
+          }`}
         />
       </div>
       <div className={`flex flex-1 flex-col p-7 ${wide ? "sm:w-3/5 sm:justify-center" : ""}`}>
@@ -577,7 +580,7 @@ function NearTheEdge() {
         </ul>
         <Reveal className="mt-10">
           <p className="text-lg font-medium">That is where you will find us.</p>
-          <p className="mt-10 text-3xl text-olive md:text-4xl">
+          <p className="mt-10 text-2xl text-ink md:text-4xl">
             <Wordmark />
           </p>
           <p className="mt-3 font-display text-lg italic text-ink/60">Wholefood flavour. Made differently.</p>
@@ -632,8 +635,8 @@ function Footer() {
       <div className="container-x border-t border-paper/15 pt-12">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <a href="#top" className="text-3xl" aria-label="Back to top">
-              <Wordmark />
+            <a href="#top" className="text-2xl md:text-3xl" aria-label="Back to top">
+              <Wordmark tone="paper" />
             </a>
             <p className="mt-3 font-display italic text-paper/60">Wholefood flavour. Made differently.</p>
           </div>

@@ -1,11 +1,20 @@
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 
-// Text wordmark until the supplied logo file (no background) is added to /public.
-export function Wordmark({ className }: { className?: string }) {
+// Spiral mark from the brand logo, with the "FOODS from the EDGE" lettering set in type.
+export function Wordmark({ tone = "ink", className }: { tone?: "ink" | "paper"; className?: string }) {
   return (
-    <span className={cn("inline-flex items-baseline gap-1.5 font-display leading-none tracking-tight", className)}>
-      <span className="text-[0.62em] font-medium uppercase tracking-[0.18em]">Foods from</span>
-      <span className="font-semibold italic">the Edge</span>
+    <span className={cn("inline-flex items-center gap-[0.45em] font-display leading-none", className)}>
+      <Image
+        src={`/brand/mark-${tone}.png`}
+        alt=""
+        width={162}
+        height={145}
+        className="h-[1.35em] w-auto"
+      />
+      <span className="whitespace-nowrap tracking-tight">
+        FOODS <span className="italic">from the</span> EDGE
+      </span>
     </span>
   )
 }
