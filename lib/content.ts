@@ -127,7 +127,7 @@ export const range: RangeGroup[] = [
         dietary: ["gluten free", "vegetarian"],
         ingredients:
           "Canola & olive oil, vinegar, water, egg yolk, mustard, garlic, herbs, spices, salt & pepper",
-        image: { src: "/products/attitude.webp", width: 532, height: 1280 },
+        image: { src: "/products/attitude-cutout.webp", width: 341, height: 1400 },
       },
       {
         slug: "julius",
@@ -141,7 +141,7 @@ export const range: RangeGroup[] = [
         dietary: ["gluten free", "peanut free"],
         ingredients:
           "Canola & olive oil, water, parmesan cheese, worcestershire sauce, egg yolk, sugar, salt, anchovies, citric acid, garlic & spices",
-        image: { src: "/products/julius.webp", width: 529, height: 1280 },
+        image: { src: "/products/julius-cutout.webp", width: 339, height: 1400 },
       },
       {
         slug: "tart",
@@ -155,7 +155,7 @@ export const range: RangeGroup[] = [
         dietary: ["gluten free", "vegetarian", "vegan"],
         ingredients:
           "Canola & olive oil, water, balsamic vinegar, white vinegar, sugar, lemon juice, garlic, vanilla, salt, herbs & spices",
-        image: { src: "/products/tart.webp", width: 528, height: 1280 },
+        image: { src: "/products/tart-cutout.webp", width: 337, height: 1400 },
       },
     ],
   },

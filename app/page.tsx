@@ -162,7 +162,7 @@ function SectionLabel({ children, className }: { children: React.ReactNode; clas
 
 function About() {
   return (
-    <section id="about" className="py-24 md:py-36">
+    <section id="about" className="py-20 md:py-28">
       <div className="container-x grid gap-12 lg:grid-cols-12">
         <Reveal className="lg:col-span-5">
           <SectionLabel className="text-moss">About</SectionLabel>
@@ -170,7 +170,7 @@ function About() {
             Food should be <span className="italic text-tomato">interesting</span>
           </h2>
         </Reveal>
-        <Reveal delay={0.1} className="space-y-6 text-lg leading-relaxed text-ink/80 lg:col-span-6 lg:col-start-7 lg:pt-16">
+        <Reveal delay={0.1} className="space-y-6 text-lg leading-relaxed text-ink/80 lg:col-span-6 lg:col-start-7">
           <p className="font-display text-2xl leading-snug text-ink md:text-3xl">
             Foods From The Edge is a collection of boldly flavoured dips, dressings and condiments made for everyday
             eating.
@@ -194,7 +194,7 @@ function About() {
 
 function MadeFromFood() {
   return (
-    <section className="bg-olive py-24 text-paper md:py-36">
+    <section className="bg-olive py-20 text-paper md:py-28">
       <div className="container-x">
         <div className="grid items-end gap-8 lg:grid-cols-12">
           <Reveal className="lg:col-span-6">
@@ -276,7 +276,7 @@ function MadeFromFood() {
 
 function OurRange() {
   return (
-    <section id="range" className="bg-paper-2 py-24 md:py-36">
+    <section id="range" className="bg-paper-2 py-20 md:py-28">
       <div className="container-x">
         <Reveal className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
@@ -404,7 +404,7 @@ function ProductCard({ product }: { product: Product }) {
 
 function PlantForward() {
   return (
-    <section className="py-24 md:py-36">
+    <section className="py-20 md:py-28">
       <div className="container-x">
         <div className="grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
@@ -413,7 +413,7 @@ function PlantForward() {
               Plant-forward <span className="italic text-moss">by nature</span>
             </h2>
           </Reveal>
-          <Reveal delay={0.1} className="space-y-6 text-lg leading-relaxed text-ink/80 lg:col-span-6 lg:col-start-7 lg:pt-16">
+          <Reveal delay={0.1} className="space-y-6 text-lg leading-relaxed text-ink/80 lg:col-span-6 lg:col-start-7">
             <p>We are not interested in making food complicated.</p>
             <p className="font-display text-2xl leading-snug text-ink md:text-3xl">
               We are interested in making vegetables, legumes, nuts, seeds, herbs and spices genuinely exciting.
@@ -425,7 +425,7 @@ function PlantForward() {
           </Reveal>
         </div>
 
-        <Reveal className="mt-20 border-t border-line pt-14 md:mt-28">
+        <Reveal className="mt-16 border-t border-line pt-12 md:mt-20">
           <p className="display text-[clamp(2.25rem,6vw,5rem)] font-medium">
             Dairy-free should never mean <span className="italic text-beet">flavour-free.</span>
           </p>
@@ -440,7 +440,7 @@ function PlantForward() {
 
 function Philosophy() {
   return (
-    <section id="philosophy" className="bg-ink py-24 text-paper md:py-36">
+    <section id="philosophy" className="bg-ink py-20 text-paper md:py-28">
       <div className="container-x grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
@@ -475,7 +475,7 @@ function Philosophy() {
 
 function AdelaideHills() {
   return (
-    <section className="relative overflow-hidden pb-48 pt-24 md:pb-64 md:pt-36">
+    <section className="relative overflow-hidden pb-40 pt-20 md:pb-52 md:pt-28">
       <div className="container-x relative z-10 grid gap-12 lg:grid-cols-12">
         <Reveal className="lg:col-span-6">
           <SectionLabel className="text-moss">Where we are from</SectionLabel>
@@ -483,7 +483,7 @@ function AdelaideHills() {
             From the edge of the <span className="italic text-olive">Adelaide Hills</span>
           </h2>
         </Reveal>
-        <Reveal delay={0.1} className="space-y-6 text-lg leading-relaxed text-ink/80 lg:col-span-5 lg:col-start-8 lg:pt-16">
+        <Reveal delay={0.1} className="space-y-6 text-lg leading-relaxed text-ink/80 lg:col-span-5 lg:col-start-8">
           <p>
             Foods From The Edge is produced in South Australia by people who understand that good food is built from
             the inside out.
@@ -508,17 +508,19 @@ function AdelaideHills() {
 function Hills({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 1440 240" preserveAspectRatio="none" className={className} aria-hidden="true">
-      <path d="M0 120c160-60 300-80 460-40s280 70 440 10 340-90 540-30v180H0z" fill="#B4B37A" opacity="0.55" />
-      <path d="M0 170c200-50 360-40 520 0s320 40 500-20 300-40 420 0v110H0z" fill="#6B7F3A" />
-      <path d="M0 210c240-30 420-20 620 5s380 10 560-15 200-5 260 5v35H0z" fill="#33482A" />
+      <path d="M0 118C180 70 330 58 500 92s300 62 470 30 330-78 470-40v158H0z" fill="#B4B37A" opacity="0.3" />
+      <path d="M0 160c190-46 360-46 540-14s330 44 510 8 280-36 390-12v98H0z" fill="#6B7F3A" opacity="0.35" />
+      <path d="M0 196c230-34 430-34 640-8s400 22 560-4 200-10 240-4v60H0z" fill="#6B7F3A" opacity="0.6" />
+      {/* Last ridge uses the next section's background, so the hills flow straight into it. */}
+      <path d="M0 222c260-22 470-22 700-4s420 10 740-10v32H0z" fill="#EBE2D2" />
     </svg>
   )
 }
 
 function Retailers() {
   return (
-    <section id="retailers" className="bg-paper-2 py-24 md:py-36">
-      <div className="container-x grid gap-14 lg:grid-cols-12">
+    <section id="retailers" className="bg-paper-2 py-20 md:py-28">
+      <div className="container-x grid gap-14 lg:grid-cols-12 lg:items-center">
         <Reveal className="lg:col-span-5">
           <SectionLabel className="text-moss">For retailers</SectionLabel>
           <h2 className="display mt-6 text-5xl font-medium md:text-6xl">
@@ -563,7 +565,7 @@ function Retailers() {
 
 function Foodservice() {
   return (
-    <section id="foodservice" className="bg-beet py-24 text-paper md:py-36">
+    <section id="foodservice" className="bg-beet py-20 text-paper md:py-28">
       <div className="container-x">
         <div className="grid gap-10 lg:grid-cols-12">
           <Reveal className="lg:col-span-6">
@@ -572,7 +574,7 @@ function Foodservice() {
               More than something for the <span className="italic">side of the plate</span>
             </h2>
           </Reveal>
-          <Reveal delay={0.1} className="lg:col-span-5 lg:col-start-8 lg:pt-16">
+          <Reveal delay={0.1} className="lg:col-span-5 lg:col-start-8 lg:self-end">
             <p className="text-lg leading-relaxed text-paper/85">
               Our dips, dressings and condiments can be used across:
             </p>
@@ -614,7 +616,7 @@ function NearTheEdge() {
     "Where plant-forward food is chosen for flavour—not obligation.",
   ]
   return (
-    <section className="py-20 md:py-32">
+    <section className="py-16 md:py-24">
       <div className="container-x">
         <div className="grid overflow-hidden rounded-[2.5rem] bg-mustard text-ink lg:grid-cols-12">
           <div className="p-8 sm:p-12 lg:col-span-7 lg:p-16">
@@ -651,10 +653,11 @@ function NearTheEdge() {
             </Reveal>
           </div>
 
-          <div className="flex items-center justify-center px-6 pb-10 sm:px-12 lg:col-span-5 lg:py-12 lg:pl-0 lg:pr-10">
-            <div className="relative aspect-square w-full max-w-[480px]">
+          {/* Stretches to the full height of the copy column so the products fill the panel. */}
+          <div className="px-6 pb-10 sm:px-12 lg:col-span-5 lg:py-10 lg:pl-0 lg:pr-10">
+            <div className="relative mx-auto h-full min-h-[560px] w-full max-w-[480px] sm:min-h-[680px]">
               <div
-                className="absolute inset-0 rounded-full bg-[radial-gradient(closest-side,#f4eee3_0%,#f4eee3b3_60%,#f4eee300_100%)]"
+                className="absolute inset-0 rounded-[50%] bg-[radial-gradient(closest-side,#f4eee3_0%,#f4eee3b3_60%,#f4eee300_100%)]"
                 aria-hidden="true"
               />
               <Image
@@ -662,24 +665,32 @@ function NearTheEdge() {
                 alt="Hommous in a bowl"
                 width={1000}
                 height={744}
-                sizes="(min-width: 1024px) 380px, 80vw"
-                className="product-shadow absolute left-[10%] top-[10%] w-[82%]"
+                sizes="(min-width: 1024px) 370px, 76vw"
+                className="product-shadow absolute left-[2%] top-[3%] w-[76%]"
+              />
+              <Image
+                src="/products/spicy-dukkah-cutout.webp"
+                alt="Spicy Dukkah in a bowl"
+                width={1025}
+                height={786}
+                sizes="(min-width: 1024px) 280px, 58vw"
+                className="product-shadow absolute right-0 top-[36%] w-[58%]"
               />
               <Image
                 src="/products/poppyseed-skordalia-cutout.webp"
                 alt="Poppyseed Skordalia in a bowl"
                 width={1000}
                 height={738}
-                sizes="(min-width: 1024px) 240px, 50vw"
-                className="product-shadow absolute bottom-[6%] right-0 w-[50%]"
+                sizes="(min-width: 1024px) 260px, 54vw"
+                className="product-shadow absolute bottom-[3%] left-0 w-[54%]"
               />
               <Image
                 src="/products/tart-cutout.webp"
                 alt="Tart dressing bottle"
-                width={265}
-                height={1100}
-                sizes="(min-width: 1024px) 110px, 22vw"
-                className="product-shadow absolute bottom-0 left-[6%] h-[68%] w-auto"
+                width={337}
+                height={1400}
+                sizes="(min-width: 1024px) 110px, 24vw"
+                className="product-shadow absolute bottom-[1%] right-[10%] h-[44%] w-auto"
               />
             </div>
           </div>
@@ -691,7 +702,7 @@ function NearTheEdge() {
 
 function Contact() {
   return (
-    <section id="contact" className="bg-ink py-24 text-paper md:py-36">
+    <section id="contact" className="bg-ink py-20 text-paper md:py-28">
       <div className="container-x grid gap-14 lg:grid-cols-12">
         <Reveal className="lg:col-span-5">
           <SectionLabel className="text-mustard">Contact us</SectionLabel>
