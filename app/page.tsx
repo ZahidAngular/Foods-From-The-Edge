@@ -1,9 +1,11 @@
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowDown, ArrowRight, Check } from "lucide-react"
 import { EnquiryForm, EnquiryLink } from "@/components/EnquiryForm"
+import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
 import { Reveal } from "@/components/Reveal"
-import { Wordmark } from "@/components/Wordmark"
+import { Logo } from "@/components/Logo"
 import {
   foodserviceUses,
   ingredients,
@@ -198,51 +200,74 @@ function MadeFromFood() {
   return (
     <section className="bg-olive py-24 text-paper md:py-36">
       <div className="container-x">
-        <div className="grid gap-10 lg:grid-cols-12">
+        <div className="grid items-end gap-8 lg:grid-cols-12">
           <Reveal className="lg:col-span-6">
             <SectionLabel className="text-mustard">Our starting point</SectionLabel>
             <h2 className="display mt-6 text-5xl font-medium md:text-7xl">Made from food</h2>
           </Reveal>
-          <Reveal delay={0.1} className="text-lg leading-relaxed text-paper/80 lg:col-span-5 lg:col-start-8 lg:pt-16">
-            <p>We believe the best place to begin is with real, recognisable ingredients.</p>
+          <Reveal delay={0.1} className="lg:col-span-5 lg:col-start-8">
+            <p className="font-display text-2xl leading-snug text-paper/90 md:text-3xl">
+              We believe the best place to begin is with real, recognisable ingredients.
+            </p>
           </Reveal>
         </div>
 
-        <ul className="mt-16 grid gap-px overflow-hidden rounded-3xl bg-paper/15 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 md:mt-20">
           {madeFrom.map((m, i) => {
-            const product = byName(m.product) ?? byName("Original Dukkah")
+            // The copy says "our dukkah"; the card shows and links to the Original Dukkah.
+            const product = m.product === "Dukkah" ? byName("Original Dukkah") : byName(m.product)
             return (
-              <Reveal as="li" key={m.product} delay={i * 0.06} className="flex flex-col bg-olive p-8">
-                <div className="relative size-24 overflow-hidden rounded-full border-4 border-paper/90 bg-white">
-                  <Image
-                    src={product.image.src}
-                    alt=""
-                    fill
-                    sizes="96px"
-                    className="scale-[1.8] object-cover"
-                  />
-                </div>
-                <p className="mt-8 font-display text-3xl italic leading-tight">{m.ingredient}</p>
-                <p className="mt-3 text-sm text-paper/70">
-                  in our <span className="font-semibold text-paper">{m.product === "Dukkah" ? "dukkah" : m.product}</span>
-                </p>
+              <Reveal as="li" key={m.product} delay={i * 0.08} className="h-full">
+                <Link
+                  href={`/range/${product.slug}`}
+                  className="group flex h-full flex-col rounded-[1.75rem] bg-paper/[0.07] p-3 ring-1 ring-paper/10 transition-colors hover:bg-paper/[0.12]"
+                >
+                  <div className="relative aspect-square overflow-hidden rounded-[1.25rem] bg-white">
+                    <Image
+                      src={product.image.src}
+                      alt={`${product.name} in a bowl`}
+                      fill
+                      sizes="(min-width: 1024px) 290px, (min-width: 640px) 45vw, 90vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    <span className="absolute left-3 top-3 grid size-10 place-items-center rounded-full bg-olive font-display text-sm italic text-paper">
+                      0{i + 1}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col px-3 pb-3 pt-6">
+                    <p className="font-display text-3xl italic leading-tight">{m.ingredient}</p>
+                    <div className="mt-auto pt-6">
+                      <p className="flex items-center justify-between gap-3 border-t border-paper/15 pt-4 text-sm text-paper/70">
+                        <span>
+                          in our{" "}
+                          <span className="font-semibold text-paper">{m.product === "Dukkah" ? "dukkah" : m.product}</span>
+                        </span>
+                        <ArrowRight
+                          size={18}
+                          aria-hidden="true"
+                          className="text-mustard transition-transform group-hover:translate-x-1"
+                        />
+                      </p>
+                    </div>
+                  </div>
+                </Link>
               </Reveal>
             )
           })}
         </ul>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-12">
-          <Reveal className="text-lg leading-relaxed text-paper/80 lg:col-span-5">
-            <p>
+        <div className="mt-16 grid gap-10 border-t border-paper/15 pt-14 md:mt-20 lg:grid-cols-12">
+          <Reveal className="lg:col-span-4">
+            <p className="text-xl leading-relaxed text-paper/80">
               Our range is increasingly dairy-free and plant-forward, using thoughtfully selected alternatives only
               where they make the product better.
             </p>
           </Reveal>
-          <Reveal delay={0.1} className="lg:col-span-6 lg:col-start-7">
-            <p className="font-display text-3xl leading-tight text-paper/60 md:text-4xl">
+          <Reveal delay={0.1} className="lg:col-span-7 lg:col-start-6 lg:border-l lg:border-paper/15 lg:pl-12">
+            <p className="font-display text-3xl leading-tight text-paper/60 md:text-5xl">
               We do not want to make complicated food sound simple.
             </p>
-            <p className="mt-4 font-display text-3xl italic leading-tight md:text-4xl">
+            <p className="mt-5 font-display text-3xl italic leading-tight md:text-5xl">
               We want to make genuinely simple food taste <span className="text-mustard">exceptional.</span>
             </p>
           </Reveal>
@@ -283,6 +308,11 @@ function OurRange() {
                 </h3>
                 <span className="font-display text-lg italic text-ink/50">0{gi + 1}</span>
               </Reveal>
+              {group.intro && (
+                <Reveal>
+                  <p className="mt-6 max-w-3xl leading-relaxed text-ink/75">{group.intro}</p>
+                </Reveal>
+              )}
 
               <ul
                 className={
@@ -322,7 +352,7 @@ function ProductCard({ product, wide }: { product: Product; wide?: boolean }) {
   const bottle = product.image.height > product.image.width
   return (
     <article
-      className={`group flex h-full overflow-hidden rounded-3xl bg-paper ${wide ? "flex-col sm:flex-row" : "flex-col"}`}
+      className={`group relative flex h-full overflow-hidden rounded-3xl bg-paper transition-shadow hover:shadow-xl hover:shadow-ink/10 ${wide ? "flex-col sm:flex-row" : "flex-col"}`}
     >
       <div className={`relative aspect-[4/3] overflow-hidden bg-white ${wide ? "sm:aspect-auto sm:w-2/5" : ""}`}>
         <Image
@@ -336,14 +366,23 @@ function ProductCard({ product, wide }: { product: Product; wide?: boolean }) {
         />
       </div>
       <div className={`flex flex-1 flex-col p-7 ${wide ? "sm:w-3/5 sm:justify-center" : ""}`}>
-        <h4 className="font-display text-2xl font-medium md:text-[1.75rem]">{product.name}</h4>
+        <h4 className="font-display text-2xl font-medium md:text-[1.75rem]">
+          {/* Stretched link: the whole card opens the product page. */}
+          <Link href={`/range/${product.slug}`} className="after:absolute after:inset-0">
+            {product.name}
+          </Link>
+        </h4>
         <p className="mt-3 leading-relaxed text-ink/75">{product.description}</p>
         <p className="mt-4 font-display text-lg italic leading-snug text-olive">{product.character}</p>
-        {product.serving && (
-          <div className="mt-auto pt-5">
+        <div className="mt-auto pt-5">
+          {product.serving && (
             <p className="border-t border-line pt-4 text-sm leading-relaxed text-ink/70">{product.serving}</p>
-          </div>
-        )}
+          )}
+          <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-ink">
+            View product
+            <ArrowRight size={16} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
+          </p>
+        </div>
       </div>
     </article>
   )
@@ -580,10 +619,9 @@ function NearTheEdge() {
         </ul>
         <Reveal className="mt-10">
           <p className="text-lg font-medium">That is where you will find us.</p>
-          <p className="mt-10 text-2xl text-ink md:text-4xl">
-            <Wordmark />
-          </p>
-          <p className="mt-3 font-display text-lg italic text-ink/60">Wholefood flavour. Made differently.</p>
+          {/* The stacked logo carries the sign-off: Foods From The Edge. Wholefood flavour. Made differently. */}
+          <Logo variant="stacked" className="mx-auto mt-12 w-40 md:w-48" />
+          <p className="sr-only">Wholefood flavour. Made differently.</p>
         </Reveal>
       </div>
     </section>
@@ -626,35 +664,5 @@ function Contact() {
         </Reveal>
       </div>
     </section>
-  )
-}
-
-function Footer() {
-  return (
-    <footer className="bg-ink pb-10 text-paper">
-      <div className="container-x border-t border-paper/15 pt-12">
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div>
-            <a href="#top" className="text-2xl md:text-3xl" aria-label="Back to top">
-              <Wordmark tone="paper" />
-            </a>
-            <p className="mt-3 font-display italic text-paper/60">Wholefood flavour. Made differently.</p>
-          </div>
-          <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-paper/70">
-            {range.map((g) => (
-              <a key={g.id} href={`#${g.id}`} className="link-underline hover:text-paper">
-                {g.title}
-              </a>
-            ))}
-            <a href="#retailers" className="link-underline hover:text-paper">Retailers</a>
-            <a href="#foodservice" className="link-underline hover:text-paper">Foodservice</a>
-            <a href="#contact" className="link-underline hover:text-paper">Contact</a>
-          </nav>
-        </div>
-        <p className="mt-12 text-sm text-paper/50">
-          © {new Date().getFullYear()} Foods From The Edge. Made in South Australia.
-        </p>
-      </div>
-    </footer>
   )
 }
