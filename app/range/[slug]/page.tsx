@@ -145,15 +145,13 @@ export default async function ProductPage({ params }: PageProps<"/range/[slug]">
               {related.map((p) => (
                 <li key={p.slug}>
                   <Link href={`/range/${p.slug}`} className="group block overflow-hidden rounded-3xl bg-paper">
-                    <div className="relative aspect-[4/3] overflow-hidden bg-white">
+                    <div className="relative aspect-[3/2] overflow-hidden bg-white">
                       <Image
                         src={p.image.src}
                         alt=""
                         fill
                         sizes="(min-width: 1024px) 300px, (min-width: 640px) 50vw, 100vw"
-                        className={`transition-transform duration-700 group-hover:scale-105 ${
-                          p.image.height > p.image.width ? "object-contain py-4" : "object-cover"
-                        }`}
+                        className={p.image.height > p.image.width ? "object-contain py-3" : "object-cover"}
                       />
                     </div>
                     <div className="p-6">

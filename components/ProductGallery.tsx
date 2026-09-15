@@ -13,7 +13,7 @@ export function ProductGallery({ name, shots }: { name: string; shots: Shot[] })
 
   return (
     <div>
-      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-white">
+      <div className="relative aspect-[3/2] overflow-hidden rounded-3xl bg-white">
         <Image
           key={shot.src}
           src={shot.src}
@@ -34,8 +34,9 @@ export function ProductGallery({ name, shots }: { name: string; shots: Shot[] })
               onClick={() => setActive(i)}
               aria-pressed={i === active}
               className={cn(
-                "relative aspect-[4/3] w-28 overflow-hidden rounded-2xl border-2 bg-white transition-colors",
-                i === active ? "border-ink" : "border-transparent hover:border-ink/30",
+                // A ring rather than a border keeps the frame at the photo's exact 3:2 ratio.
+                "relative aspect-[3/2] w-28 overflow-hidden rounded-2xl bg-white ring-2 transition-shadow",
+                i === active ? "ring-ink" : "ring-transparent hover:ring-ink/30",
               )}
             >
               <Image src={s.src} alt="" fill sizes="112px" className="object-cover" />
