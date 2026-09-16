@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import { ArrowRight } from "lucide-react"
+import { submitLead } from "@/lib/formService"
 import { cn } from "@/lib/utils"
 
 export const enquiryTypes = [
@@ -53,17 +54,26 @@ export function EnquiryForm() {
     setStatus("sending")
     setError("")
     try {
-      const res = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type, ...Object.fromEntries(new FormData(form)) }),
+      const field = (name: string) => String(new FormData(form).get(name) ?? "").trim()
+      const typeLabel = enquiryTypes.find((t) => t.value === type)?.label ?? type
+      // The CRM takes one free-text comment, so the enquiry type and business fold into it.
+      await submitLead({
+        fullName: field("name"),
+        email: field("email"),
+        phone: field("phone"),
+        comment: [
+          `Enquiry: ${typeLabel}`,
+          ...(field("business") ? [`Business: ${field("business")}`] : []),
+          "",
+          field("message"),
+        ]
+          .join("\n"),
       })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error ?? "Something went wrong. Please try again.")
       form.reset()
       setStatus("sent")
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.")
+      console.error(err)
+      setError("Sorry, your enquiry could not be sent. Please try again.")
       setStatus("error")
     }
   }
