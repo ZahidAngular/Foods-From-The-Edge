@@ -150,7 +150,7 @@ export const range: RangeGroup[] = [
         dietary: ["vegetarian", "gluten free"],
         ingredients:
           "Roasted eggplant, eggplant puree, tahini, EV Oil, canola oil, lemon juice, yoghurt, brown sugar, salt & herbs",
-        image: { src: "/products/babaganoush.webp", width: 1200, height: 800 },
+        image: { src: "/products/babaganoush-dip.webp", width: 1200, height: 800 },
         tub: { src: "/products/babaganoush-tub.webp", width: 1200, height: 800 },
       },
       {
