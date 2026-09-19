@@ -108,6 +108,66 @@ export const range: RangeGroup[] = [
         image: { src: "/products/sundried-tomato-cashew.webp", width: 1200, height: 800 },
         tub: { src: "/products/sundried-tomato-cashew-tub.webp", width: 1200, height: 800 },
       },
+      {
+        slug: "rocket-cashew",
+        name: "Rocket & Cashew",
+        // Added later from the product listing; there is no brand copy for it yet.
+        description: "",
+        character: "",
+        serving: "",
+        overview: "Enjoy as a dip, condiment or spread",
+        highlights: [],
+        dietary: ["vegetarian", "gluten free"],
+        ingredients:
+          "Roasted cashews, canola & olive oil, parmesan cheese, sweet chilli sauce, fresh garlic, fresh rocket & salt",
+        image: { src: "/products/rocket-cashew.webp", width: 1200, height: 800 },
+        tub: { src: "/products/rocket-cashew-tub.webp", width: 1200, height: 800 },
+      },
+      {
+        slug: "african-cheese",
+        name: "African Cheese",
+        // Added later from the product listing; there is no brand copy for it yet.
+        description: "",
+        character: "",
+        serving: "",
+        overview: "Enjoy as a dip, condiment or spread",
+        highlights: [],
+        dietary: ["vegetarian", "gluten free"],
+        ingredients:
+          "Cream cheese, canola & olive oil, Harissa",
+        image: { src: "/products/african-cheese.webp", width: 1200, height: 800 },
+        tub: { src: "/products/african-cheese-tub.webp", width: 1200, height: 800 },
+      },
+      {
+        slug: "babaganoush",
+        name: "Babaganoush",
+        // Added later from the product listing; there is no brand copy for it yet.
+        description: "",
+        character: "",
+        serving: "",
+        overview: "Babaganoush is delicious as a dip or spread.",
+        highlights: [],
+        dietary: ["vegetarian", "gluten free"],
+        ingredients:
+          "Roasted eggplant, eggplant puree, tahini, EV Oil, canola oil, lemon juice, yoghurt, brown sugar, salt & herbs",
+        image: { src: "/products/babaganoush.webp", width: 1200, height: 800 },
+        tub: { src: "/products/babaganoush-tub.webp", width: 1200, height: 800 },
+      },
+      {
+        slug: "porcini-black-garlic",
+        name: "Porcini and Black Garlic",
+        // Added later from the product listing; there is no brand copy for it yet.
+        description: "",
+        character: "",
+        serving: "",
+        overview: "Porcini and Black Garlic.",
+        highlights: [],
+        dietary: ["vegetarian", "gluten free"],
+        ingredients:
+          "Porcini mushrooms, field mushrooms, cream cheese, red onion, EV oil, fresh garlic, butter, black garlic, lactic acid, salt & spices",
+        image: { src: "/products/porcini-black-garlic.webp", width: 1200, height: 800 },
+        tub: { src: "/products/porcini-black-garlic-tub.webp", width: 1200, height: 800 },
+      },
     ],
   },
   {

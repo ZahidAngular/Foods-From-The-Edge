@@ -324,12 +324,12 @@ function OurRange() {
                   </Reveal>
                 ))}
                 {group.id === "dips" && (
-                  <Reveal as="li" delay={0.3} className="h-full">
-                    <div className="flex h-full flex-col rounded-3xl bg-ink p-8 text-paper">
+                  <Reveal as="li" delay={0.3} className="h-full sm:col-span-2 lg:col-span-3">
+                    <div className="grid h-full gap-8 rounded-3xl bg-ink p-8 text-paper md:p-10 lg:grid-cols-[1.1fr_0.9fr_1fr] lg:items-center lg:gap-12">
                       <p className="font-display text-3xl leading-tight">
                         A range with a clear <span className="italic text-mustard">reason to exist.</span>
                       </p>
-                      <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-paper/15">
+                      <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-paper/15">
                         <div className="bg-ink p-4">
                           <dt className="text-xs uppercase tracking-[0.14em] text-paper/60">Products</dt>
                           <dd className="mt-1 font-display text-4xl">{range.reduce((n, g) => n + g.products.length, 0)}</dd>
@@ -339,7 +339,8 @@ function OurRange() {
                           <dd className="mt-1 font-display text-4xl">{range.length}</dd>
                         </div>
                       </dl>
-                      <ul className="mt-8 space-y-3">
+                      <div>
+                      <ul className="space-y-3">
                         {[retailerPoints[0], retailerPoints[2], retailerPoints[3], retailerPoints[6]].map((point) => (
                           <li key={point} className="flex items-start gap-3 text-paper/85">
                             <Check size={18} strokeWidth={2.5} className="mt-0.5 shrink-0 text-mustard" aria-hidden="true" />
@@ -347,11 +348,12 @@ function OurRange() {
                           </li>
                         ))}
                       </ul>
-                      <div className="mt-auto pt-8">
+                      <div className="pt-6">
                         <EnquiryLink type="retail" className="btn btn-light">
                           Enquire about stocking the range
                           <ArrowRight size={18} aria-hidden="true" />
                         </EnquiryLink>
+                      </div>
                       </div>
                     </div>
                   </Reveal>
@@ -386,8 +388,10 @@ function ProductCard({ product }: { product: Product }) {
             {product.name}
           </Link>
         </h4>
-        <p className="mt-3 leading-relaxed text-ink/75">{product.description}</p>
-        <p className="mt-4 font-display text-lg italic leading-snug text-olive">{product.character}</p>
+        <p className="mt-3 leading-relaxed text-ink/75">{product.description || product.overview}</p>
+        {product.character && (
+          <p className="mt-4 font-display text-lg italic leading-snug text-olive">{product.character}</p>
+        )}
         <div className="mt-auto pt-5">
           {product.serving && (
             <p className="border-t border-line pt-4 text-sm leading-relaxed text-ink/70">{product.serving}</p>

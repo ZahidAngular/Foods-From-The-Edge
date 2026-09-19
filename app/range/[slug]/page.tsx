@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps<"/range/[slug]">): 
   if (!product) return {}
   return {
     title: `${product.name} | Foods From The Edge`,
-    description: `${product.description} ${product.character}`,
+    description: [product.description, product.character].filter(Boolean).join(" ") || product.overview,
   }
 }
 
@@ -85,11 +85,15 @@ export default async function ProductPage({ params }: PageProps<"/range/[slug]">
                 </ul>
               )}
 
-              <div className="mt-8 space-y-4 border-t border-line pt-8 text-lg leading-relaxed text-ink/80">
-                <p>{product.description}</p>
-                <p className="font-display text-xl italic leading-snug text-ink">{product.character}</p>
-                {product.serving && <p>{product.serving}</p>}
-              </div>
+              {(product.description || product.character || product.serving) && (
+                <div className="mt-8 space-y-4 border-t border-line pt-8 text-lg leading-relaxed text-ink/80">
+                  {product.description && <p>{product.description}</p>}
+                  {product.character && (
+                    <p className="font-display text-xl italic leading-snug text-ink">{product.character}</p>
+                  )}
+                  {product.serving && <p>{product.serving}</p>}
+                </div>
+              )}
 
               <div className="mt-8 border-t border-line pt-8">
                 <h2 className="font-display text-2xl">
