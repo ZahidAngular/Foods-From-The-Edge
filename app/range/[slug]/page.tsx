@@ -147,8 +147,9 @@ export default async function ProductPage({ params }: PageProps<"/range/[slug]">
 
             <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {related.map((p) => (
-                <li key={p.slug}>
-                  <Link href={`/range/${p.slug}`} className="group block overflow-hidden rounded-3xl bg-paper">
+                <li key={p.slug} className="h-full">
+                  {/* Full-height flex column so every card in a row ends at the same line. */}
+                  <Link href={`/range/${p.slug}`} className="group flex h-full flex-col overflow-hidden rounded-3xl bg-paper">
                     <div className="relative aspect-[3/2] overflow-hidden bg-white">
                       <Image
                         src={p.image.src}
@@ -158,7 +159,7 @@ export default async function ProductPage({ params }: PageProps<"/range/[slug]">
                         className={p.image.height > p.image.width ? "object-contain py-3" : "object-cover"}
                       />
                     </div>
-                    <div className="p-6">
+                    <div className="flex-1 p-6">
                       <p className="font-display text-2xl">{p.name}</p>
                       <p className="mt-2 text-sm text-ink/70">{p.overview}</p>
                     </div>
